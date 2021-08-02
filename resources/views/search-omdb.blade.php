@@ -67,10 +67,16 @@
                 });
 
             $('#search').keyup(function () {
-                if ($(this).val().length >= 3) {
+                var search = $(this).val();
+                if ( search.length >= 3 ) {
                     table.fnDraw();
                 }
             });
+
+            @if (!empty($search))
+            $('#search').val('{{ $search }}');
+            $('#search').trigger('keyup');
+            @endif
         });
     </script>
 @endsection

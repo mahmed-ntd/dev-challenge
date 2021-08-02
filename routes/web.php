@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ControllerDevChallenge::class, 'index']);
+Route::get('/view/{id}/{search}', [ControllerDevChallenge::class, 'view'])->name('view');
 Route::get('/data', [ControllerDevChallenge::class, 'data'])->name('api-data');
