@@ -1,0 +1,21 @@
+# PHP7
+
+version: "3.2"
+
+services:
+  php723:
+    image: php723
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php723
+    ports:
+      - 80:80
+    environment:
+      PHP_ERROR_REPORTING: 'E_ALL & ~E_STRICT'
+      PHP_IDE_CONFIG: "serverName=${EXTERNAL_IP}"
+      XDEBUG_CONFIG: "remote_host=${EXTERNAL_IP} remote_enable=1 remote_autostart=0 remote_connect_back=0 var_display_max_depth6 xdebug.remote_port=9001 remote_port=9001 xdebug.idekey=\"PHPSTORM\" idekey=\"PHPSTORM\""
+    volumes:
+      - ~/developments/www/dev-challenge/docker/sites-available:/etc/apache2/sites-available/:delegated
+      - ~/developments/www/dev-challenge/docker/sites-enabled:/etc/apache2/sites-enabled/:delegated
+      - ~/developments/www:/var/www:delegated
